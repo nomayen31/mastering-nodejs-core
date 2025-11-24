@@ -1,16 +1,40 @@
 const fs = require("fs");
 
-fs.writeFileSync("../output/AsyncFile/test-delete-file.txt", "This file will be deleted.");
+const filePath = "../output/AsyncFile/test-delete-file.txt";
+
+// Step 1: Create file
+fs.writeFileSync(filePath, "This file will be deleted.");
 console.log("File created successfully.");
 
-if (fs.existsSync("../output/AsyncFile/test-delete-file.txt")) {
-    console.log("File exisist");
-    fs.unlinkSync("../output/AsyncFile/test-delete-file.txt");
-    console.log("File deleted Successfully!!!");
-    
+// Step 2: Check and delete file
+if (fs.existsSync(filePath)) {
+    console.log("File exists.");
+    fs.unlinkSync(filePath);
+    console.log("File deleted successfully!");
 }
 
+// Step 3: Try deleting again (will fail)
+try {
+    console.log("Attempting to delete the file again...");
+    fs.unlinkSync(filePath);
+    console.log("File deleted again (unexpected).");
+} catch (error) {
+    console.log("Error while deleting again:", error.message);
 
+    // Step 4: Create the file again inside catch block
+    try {
+        fs.writeFileSync(filePath, "Recreated file after deletion error.");
+        console.log("File recreated successfully!");
+    } catch (createError) {
+        console.log("Failed to recreate file:", createError.message);
+    }
+}
 
-
-
+// Step 5: Bottom try/catch as requested
+try {
+    console.log("Trying to delete the recreated file...");
+    fs.unlinkSync(filePath);
+    console.log("Recreated file deleted successfully!");
+} catch (finalError) {
+    console.log("Final error occurred:", finalError.message);
+}
