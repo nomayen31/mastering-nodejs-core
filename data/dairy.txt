@@ -1,0 +1,5 @@
+This is a new diary file.
+You can write your thoughts here.
+Sample entry:
+Today I started writing in my diary.
+Feeling good!
