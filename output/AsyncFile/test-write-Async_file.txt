@@ -1,0 +1,6 @@
+This file was created as part of a demonstration on synchronous file writing in Node.js.
+
+Node.js is a high-performance, event-driven, and non-blocking JavaScript runtime built on the V8 engine. 
+It enables developers to build fast, scalable, and efficient server-side applications using JavaScript. 
+
+This example showcases how to write text content to a file using the fs.writeFileSync() method.
